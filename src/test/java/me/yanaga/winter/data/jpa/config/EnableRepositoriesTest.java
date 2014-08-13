@@ -1,8 +1,8 @@
-package me.yanaga.specrepo.config;
+package me.yanaga.winter.data.jpa.config;
 
-import me.yanaga.specrepo.PersonRepository;
-import me.yanaga.specrepo.Repository;
-import me.yanaga.specrepo.TestConfiguration;
+import me.yanaga.winter.data.jpa.PersonRepository;
+import me.yanaga.winter.data.jpa.Repository;
+import me.yanaga.winter.data.jpa.TestConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;

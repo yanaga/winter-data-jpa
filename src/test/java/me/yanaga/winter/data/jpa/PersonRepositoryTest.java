@@ -1,4 +1,4 @@
-package me.yanaga.specrepo;
+package me.yanaga.winter.data.jpa;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

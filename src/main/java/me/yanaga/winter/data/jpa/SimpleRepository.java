@@ -1,10 +1,10 @@
-package me.yanaga.specrepo;
+package me.yanaga.winter.data.jpa;
 
 import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.EntityPath;
 import com.mysema.query.types.expr.BooleanExpression;
-import me.yanaga.specrepo.querydsl.EntityPathResolver;
+import me.yanaga.winter.data.jpa.querydsl.EntityPathResolver;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;

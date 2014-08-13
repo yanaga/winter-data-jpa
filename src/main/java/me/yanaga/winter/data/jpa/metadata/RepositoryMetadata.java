@@ -1,7 +1,7 @@
-package me.yanaga.specrepo.metadata;
+package me.yanaga.winter.data.jpa.metadata;
 
 import com.google.common.reflect.TypeToken;
-import me.yanaga.specrepo.Repository;
+import me.yanaga.winter.data.jpa.Repository;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;

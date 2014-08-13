@@ -1,4 +1,4 @@
-package me.yanaga.specrepo.querydsl;
+package me.yanaga.winter.data.jpa.querydsl;
 
 import com.mysema.query.types.EntityPath;
 

@@ -1,6 +1,6 @@
-package me.yanaga.specrepo.config;
+package me.yanaga.winter.data.jpa.config;
 
-import me.yanaga.specrepo.Repository;
+import me.yanaga.winter.data.jpa.Repository;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.classreading.MetadataReader;

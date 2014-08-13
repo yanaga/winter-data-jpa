@@ -1,7 +1,7 @@
-package me.yanaga.specrepo.config;
+package me.yanaga.winter.data.jpa.config;
 
-import me.yanaga.specrepo.SimpleRepositoryFactoryBean;
-import me.yanaga.specrepo.metadata.EnableRepositoriesMetadata;
+import me.yanaga.winter.data.jpa.SimpleRepositoryFactoryBean;
+import me.yanaga.winter.data.jpa.metadata.EnableRepositoriesMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;

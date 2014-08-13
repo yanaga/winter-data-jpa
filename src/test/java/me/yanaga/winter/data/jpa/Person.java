@@ -1,4 +1,4 @@
-package me.yanaga.specrepo;
+package me.yanaga.winter.data.jpa;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

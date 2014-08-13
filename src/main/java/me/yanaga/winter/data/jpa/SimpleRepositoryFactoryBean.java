@@ -1,6 +1,6 @@
-package me.yanaga.specrepo;
+package me.yanaga.winter.data.jpa;
 
-import me.yanaga.specrepo.metadata.RepositoryMetadata;
+import me.yanaga.winter.data.jpa.metadata.RepositoryMetadata;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.factory.FactoryBean;
 

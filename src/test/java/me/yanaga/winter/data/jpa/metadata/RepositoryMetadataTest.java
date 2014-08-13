@@ -1,8 +1,8 @@
-package me.yanaga.specrepo.metadata;
+package me.yanaga.winter.data.jpa.metadata;
 
-import me.yanaga.specrepo.Person;
-import me.yanaga.specrepo.PersonRepository;
-import me.yanaga.specrepo.Repository;
+import me.yanaga.winter.data.jpa.Person;
+import me.yanaga.winter.data.jpa.PersonRepository;
+import me.yanaga.winter.data.jpa.Repository;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

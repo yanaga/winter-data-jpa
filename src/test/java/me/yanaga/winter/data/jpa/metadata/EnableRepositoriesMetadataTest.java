@@ -1,7 +1,7 @@
-package me.yanaga.specrepo.metadata;
+package me.yanaga.winter.data.jpa.metadata;
 
-import me.yanaga.specrepo.Person;
-import me.yanaga.specrepo.config.EnableRepositories;
+import me.yanaga.winter.data.jpa.Person;
+import me.yanaga.winter.data.jpa.config.EnableRepositories;
 import org.springframework.core.type.StandardAnnotationMetadata;
 import org.testng.annotations.Test;
 
@@ -31,28 +31,28 @@ public class EnableRepositoriesMetadataTest {
 	public void testEmpty() {
 		StandardAnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(EmptyConfiguration.class);
 		EnableRepositoriesMetadata metadata = EnableRepositoriesMetadata.of(annotationMetadata);
-		assertThat(metadata.getPackagesToScan(), contains("me.yanaga.specrepo.metadata"));
+		assertThat(metadata.getPackagesToScan(), contains("me.yanaga.winter.data.jpa.metadata"));
 	}
 
 	@Test
 	public void testMetadataBasePackageClasses() {
 		StandardAnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(BasePackageClassesConfiguration.class);
 		EnableRepositoriesMetadata metadata = EnableRepositoriesMetadata.of(annotationMetadata);
-		assertThat(metadata.getPackagesToScan(), contains("me.yanaga.specrepo"));
+		assertThat(metadata.getPackagesToScan(), contains("me.yanaga.winter.data.jpa"));
 	}
 
 	@Test
 	public void testMetadataBasePackagesAndClasses() {
 		StandardAnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(BasePackagesAndClassesConfiguration.class);
 		EnableRepositoriesMetadata metadata = EnableRepositoriesMetadata.of(annotationMetadata);
-		assertThat(metadata.getPackagesToScan(), contains("me.yanaga", "me.yanaga.specrepo"));
+		assertThat(metadata.getPackagesToScan(), contains("me.yanaga", "me.yanaga.winter.data.jpa"));
 	}
 
 	@Test
 	public void testMetadataValueAndBasePackagesAndClasses() {
 		StandardAnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(ValueAndBasePackagesAndClassesConfiguration.class);
 		EnableRepositoriesMetadata metadata = EnableRepositoriesMetadata.of(annotationMetadata);
-		assertThat(metadata.getPackagesToScan(), contains("me", "me.yanaga", "me.yanaga.specrepo"));
+		assertThat(metadata.getPackagesToScan(), contains("me", "me.yanaga", "me.yanaga.winter.data.jpa"));
 	}
 
 }

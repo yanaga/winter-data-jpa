@@ -1,4 +1,4 @@
-package me.yanaga.specrepo;
+package me.yanaga.winter.data.jpa;
 
 import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.types.expr.BooleanExpression;

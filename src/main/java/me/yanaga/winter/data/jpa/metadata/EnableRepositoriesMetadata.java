@@ -1,7 +1,7 @@
-package me.yanaga.specrepo.metadata;
+package me.yanaga.winter.data.jpa.metadata;
 
 import com.google.common.collect.ImmutableList;
-import me.yanaga.specrepo.config.EnableRepositories;
+import me.yanaga.winter.data.jpa.config.EnableRepositories;
 import org.springframework.core.type.AnnotationMetadata;
 
 import java.util.Arrays;

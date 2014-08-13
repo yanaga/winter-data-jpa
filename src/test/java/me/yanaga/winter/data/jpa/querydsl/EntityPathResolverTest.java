@@ -1,7 +1,7 @@
-package me.yanaga.specrepo.querydsl;
+package me.yanaga.winter.data.jpa.querydsl;
 
 import com.mysema.query.types.EntityPath;
-import me.yanaga.specrepo.Person;
+import me.yanaga.winter.data.jpa.Person;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;

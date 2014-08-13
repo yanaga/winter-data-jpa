@@ -1,6 +1,6 @@
-package me.yanaga.specrepo;
+package me.yanaga.winter.data.jpa;
 
-import me.yanaga.specrepo.config.EnableRepositories;
+import me.yanaga.winter.data.jpa.config.EnableRepositories;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -19,7 +19,7 @@ public class TestConfiguration {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource());
-		factoryBean.setPersistenceUnitName("specrepo");
+		factoryBean.setPersistenceUnitName("winter-data-jpa");
 		return factoryBean;
 	}
 
