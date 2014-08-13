@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.yanaga</groupId>
     <artifactId>winter-data-jpa</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <name>winter-data-jpa</name>
     <description>winter-data-jpa</description>
     <organization>
