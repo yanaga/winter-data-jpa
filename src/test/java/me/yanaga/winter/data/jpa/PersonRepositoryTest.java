@@ -95,7 +95,7 @@ public class PersonRepositoryTest extends AbstractTransactionalTestNGSpringConte
 		Person second = new Person();
 		second.setName("Yanaga");
 		personRepository.save(second);
-		List<Person> persons = personRepository.findAll(Persons.withNameContaining("a").and(Persons.withIdGreaterThatn(0L)));
+		List<Person> persons = personRepository.findAll(Persons.withNameContaining("a").and(Persons.withIdGreaterThan(0L)));
 		assertThat(persons, contains(second));
 	}
 
