@@ -11,7 +11,7 @@ public class Persons {
 		return QPerson.person.name.containsIgnoreCase(value);
 	}
 
-	public static BooleanExpression withIdGreaterThatn(Long value) {
+	public static BooleanExpression withIdGreaterThan(Long value) {
 		return QPerson.person.id.gt(value);
 	}
 
