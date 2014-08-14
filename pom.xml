@@ -3,25 +3,27 @@
     <groupId>me.yanaga</groupId>
     <artifactId>winter-data-jpa</artifactId>
     <version>1.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>winter-data-jpa</name>
-    <description>winter-data-jpa</description>
-    <organization>
-        <name>Edson Yanaga</name>
-        <url>http://www.yanaga.me</url>
-    </organization>
+    <description>
+        winter-data-jpa is a repository implementation inspired by spring-data-jpa.
+        But unlike spring-data-jpa, it is not transactional by default,
+        and has builtin support for more complex queries using lambdas
+        without the need to create custom repositories.
+    </description>
+    <url>http://yanaga.github.io/winter-data-jpa</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <scm>
         <connection>scm:git:git@github.com:yanaga/winter-data-jpa.git</connection>
         <url>scm:git:git@github.com:yanaga/winter-data-jpa.git</url>
         <developerConnection>scm:git:git@github.com:yanaga/winter-data-jpa.git</developerConnection>
     </scm>
-
-    <distributionManagement>
-        <repository>
-            <id>bintray</id>
-            <url>https://api.bintray.com/maven/yanaga/maven/winter-data-jpa</url>
-        </repository>
-    </distributionManagement>
-
     <developers>
         <developer>
             <id>yanaga</id>
@@ -34,7 +36,12 @@
             </roles>
         </developer>
     </developers>
-
+    <distributionManagement>
+        <repository>
+            <id>bintray</id>
+            <url>https://api.bintray.com/maven/yanaga/maven/winter-data-jpa</url>
+        </repository>
+    </distributionManagement>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -46,7 +53,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -69,19 +75,13 @@
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-core</artifactId>
-            <version>1.0.9</version>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.2</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>17.0</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.0.9</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
