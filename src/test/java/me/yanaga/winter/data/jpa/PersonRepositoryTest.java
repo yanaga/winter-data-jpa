@@ -7,6 +7,7 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
@@ -14,6 +15,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 
 @ContextConfiguration(classes = TestConfiguration.class)
@@ -28,9 +30,9 @@ public class PersonRepositoryTest extends AbstractTransactionalTestNGSpringConte
 		person.setName("Yanaga");
 		Person saved = personRepository.save(person);
 		assertNotNull(saved.getId());
-		Person found = personRepository.findOne(saved.getId());
+		Optional<Person> found = personRepository.findOne(saved.getId());
 		assertNotNull(found);
-		assertEquals(saved.getId(), found.getId());
+		assertEquals(saved.getId(), found.map(p -> p.getId()).get());
 	}
 
 	@Test
@@ -38,8 +40,17 @@ public class PersonRepositoryTest extends AbstractTransactionalTestNGSpringConte
 		Person first = new Person();
 		first.setName("Yanaga");
 		personRepository.save(first);
-		Person found = personRepository.findOne(Persons.withNameContaining("a"));
-		assertThat(found, equalTo(first));
+		Optional<Person> found = personRepository.findOne(Persons.withNameContaining("a"));
+		assertThat(found.get(), equalTo(first));
+	}
+
+	@Test
+	public void testFindOnePredicateEmptyOptional() {
+		Person first = new Person();
+		first.setName("Yanaga");
+		personRepository.save(first);
+		Optional<Person> found = personRepository.findOne(Persons.withNameContaining("z"));
+		assertFalse(found.isPresent());
 	}
 
 	@Test
@@ -47,8 +58,8 @@ public class PersonRepositoryTest extends AbstractTransactionalTestNGSpringConte
 		Person first = new Person();
 		first.setName("Yanaga");
 		personRepository.save(first);
-		Person found = personRepository.findOne(Persons.withNameContaining("a"), q -> q.limit(1));
-		assertThat(found, equalTo(first));
+		Optional<Person> found = personRepository.findOne(Persons.withNameContaining("a"), q -> q.limit(1));
+		assertThat(found.get(), equalTo(first));
 	}
 
 	@Test
@@ -56,8 +67,20 @@ public class PersonRepositoryTest extends AbstractTransactionalTestNGSpringConte
 		Person first = new Person();
 		first.setName("Yanaga");
 		personRepository.save(first);
-		Person found = personRepository.findOne(q -> q.limit(1));
-		assertThat(found, equalTo(first));
+		Optional<Person> found = personRepository.findOne(q -> q.limit(1));
+		assertThat(found.get(), equalTo(first));
+	}
+
+	@Test
+	public void testFindAll() {
+		Person first = new Person();
+		first.setName("Yanaga");
+		personRepository.save(first);
+		assertThat(personRepository.findAll(), contains(first));
+		Person second = new Person();
+		second.setName("Yanaga");
+		personRepository.save(second);
+		assertThat(personRepository.findAll(), contains(first, second));
 	}
 
 	@Test

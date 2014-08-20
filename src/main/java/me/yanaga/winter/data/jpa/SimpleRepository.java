@@ -9,9 +9,11 @@ import me.yanaga.winter.data.jpa.querydsl.EntityPathResolver;
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+@org.springframework.stereotype.Repository
 public class SimpleRepository<T, ID extends Serializable> implements Repository<T, ID> {
 
 	private Class<T> type;
@@ -38,25 +40,31 @@ public class SimpleRepository<T, ID extends Serializable> implements Repository<
 	}
 
 	@Override
-	public T findOne(ID id) {
-		return entityManager.find(type, id);
+	public Optional<T> findOne(ID id) {
+		return Optional.ofNullable(entityManager.find(type, id));
 	}
 
 	@Override
-	public T findOne(BooleanExpression predicate) {
+	public Optional<T> findOne(BooleanExpression predicate) {
 		return findOne(q -> q.where(predicate));
 	}
 
 	@Override
-	public T findOne(BooleanExpression predicate, Consumer<JPQLQuery> consumer) {
+	public Optional<T> findOne(BooleanExpression predicate, Consumer<JPQLQuery> consumer) {
 		return findOne(q -> consumer.accept(q.where(predicate)));
 	}
 
 	@Override
-	public T findOne(Consumer<JPQLQuery> consumer) {
+	public Optional<T> findOne(Consumer<JPQLQuery> consumer) {
 		JPAQuery query = new JPAQuery(entityManager).from(entityPath);
 		consumer.accept(query);
-		return query.uniqueResult(entityPath);
+		return Optional.ofNullable(query.uniqueResult(entityPath));
+	}
+
+	@Override
+	public List<T> findAll() {
+		return findAll(q -> {
+		});
 	}
 
 	@Override
@@ -71,9 +79,10 @@ public class SimpleRepository<T, ID extends Serializable> implements Repository<
 
 	@Override
 	public List<T> findAll(Consumer<JPQLQuery> consumer) {
-		JPAQuery query = new JPAQuery(entityManager).from(entityPath);
-		consumer.accept(query);
-		return query.list(entityPath);
+		return find(q -> {
+			consumer.accept(q.from(entityPath));
+			return q.list(entityPath);
+		});
 	}
 
 	@Override
