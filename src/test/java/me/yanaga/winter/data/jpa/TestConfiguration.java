@@ -1,6 +1,6 @@
 package me.yanaga.winter.data.jpa;
 
-import me.yanaga.winter.data.jpa.config.EnableRepositories;
+import me.yanaga.winter.data.jpa.spring.config.EnableRepositories;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;

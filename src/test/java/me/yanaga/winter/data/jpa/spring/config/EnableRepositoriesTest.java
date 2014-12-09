@@ -1,4 +1,4 @@
-package me.yanaga.winter.data.jpa.config;
+package me.yanaga.winter.data.jpa.spring.config;
 
 import me.yanaga.winter.data.jpa.PersonRepository;
 import me.yanaga.winter.data.jpa.Repository;

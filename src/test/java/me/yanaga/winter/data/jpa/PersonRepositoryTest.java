@@ -1,6 +1,7 @@
 package me.yanaga.winter.data.jpa;
 
 
+import com.mysema.query.BooleanBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.core.Is.is;
@@ -120,6 +122,34 @@ public class PersonRepositoryTest extends AbstractTransactionalTestNGSpringConte
 		personRepository.save(second);
 		List<Person> persons = personRepository.findAll(Persons.withNameContaining("a").and(Persons.withIdGreaterThan(0L)));
 		assertThat(persons, contains(second));
+	}
+
+	@Test
+	public void testFindAllPredicateWithBooleanBuilder() {
+		Person first = new Person();
+		first.setName("Edson");
+		personRepository.save(first);
+		Person second = new Person();
+		second.setName("Yanaga");
+		personRepository.save(second);
+		BooleanBuilder builder = new BooleanBuilder();
+		builder.and(Persons.withNameContaining("a"));
+		builder.and(Persons.withIdGreaterThan(0L));
+		List<Person> persons = personRepository.findAll(builder);
+		assertThat(persons, contains(second));
+	}
+
+	@Test
+	public void testFindAllPredicateWithEmptyBooleanBuilder() {
+		Person first = new Person();
+		first.setName("Edson");
+		personRepository.save(first);
+		Person second = new Person();
+		second.setName("Yanaga");
+		personRepository.save(second);
+		BooleanBuilder builder = new BooleanBuilder();
+		List<Person> persons = personRepository.findAll(builder);
+		assertThat(persons, containsInAnyOrder(first, second));
 	}
 
 	@Test

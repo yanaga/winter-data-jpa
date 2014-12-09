@@ -29,7 +29,7 @@ public class Person {
 
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(this.name);
+		return Objects.hash(this.name);
 	}
 
 	public String getName() {

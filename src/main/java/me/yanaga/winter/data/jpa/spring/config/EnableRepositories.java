@@ -1,4 +1,4 @@
-package me.yanaga.winter.data.jpa.config;
+package me.yanaga.winter.data.jpa.spring.config;
 
 import org.springframework.context.annotation.Import;
 

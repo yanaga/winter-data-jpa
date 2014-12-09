@@ -1,5 +1,7 @@
-package me.yanaga.winter.data.jpa;
+package me.yanaga.winter.data.jpa.spring;
 
+import me.yanaga.winter.data.jpa.Repository;
+import me.yanaga.winter.data.jpa.SimpleRepository;
 import me.yanaga.winter.data.jpa.metadata.RepositoryMetadata;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.beans.factory.FactoryBean;

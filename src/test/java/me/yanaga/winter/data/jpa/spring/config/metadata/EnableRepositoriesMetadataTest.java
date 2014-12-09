@@ -1,7 +1,7 @@
-package me.yanaga.winter.data.jpa.metadata;
+package me.yanaga.winter.data.jpa.spring.config.metadata;
 
 import me.yanaga.winter.data.jpa.Person;
-import me.yanaga.winter.data.jpa.config.EnableRepositories;
+import me.yanaga.winter.data.jpa.spring.config.EnableRepositories;
 import org.springframework.core.type.StandardAnnotationMetadata;
 import org.testng.annotations.Test;
 
@@ -31,7 +31,7 @@ public class EnableRepositoriesMetadataTest {
 	public void testEmpty() {
 		StandardAnnotationMetadata annotationMetadata = new StandardAnnotationMetadata(EmptyConfiguration.class);
 		EnableRepositoriesMetadata metadata = EnableRepositoriesMetadata.of(annotationMetadata);
-		assertThat(metadata.getPackagesToScan(), contains("me.yanaga.winter.data.jpa.metadata"));
+		assertThat(metadata.getPackagesToScan(), contains("me.yanaga.winter.data.jpa.spring.config.metadata"));
 	}
 
 	@Test

@@ -3,7 +3,7 @@ package me.yanaga.winter.data.jpa;
 import com.mysema.query.jpa.JPQLQuery;
 import com.mysema.query.jpa.impl.JPAQuery;
 import com.mysema.query.types.EntityPath;
-import com.mysema.query.types.expr.BooleanExpression;
+import com.mysema.query.types.Predicate;
 import me.yanaga.winter.data.jpa.querydsl.EntityPathResolver;
 
 import javax.persistence.EntityManager;
@@ -13,7 +13,6 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-@org.springframework.stereotype.Repository
 public class SimpleRepository<T, ID extends Serializable> implements Repository<T, ID> {
 
 	private Class<T> type;
@@ -30,12 +29,22 @@ public class SimpleRepository<T, ID extends Serializable> implements Repository<
 
 	@Override
 	public T save(T entity) {
+		Object identifier = entityManager.getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(entity);
+		if (identifier == null) {
+			entityManager.persist(entity);
+			return entity;
+		}
 		return entityManager.merge(entity);
 	}
 
 	@Override
 	public T delete(T entity) {
-		entityManager.remove(entity);
+		if (entityManager.contains(entity)) {
+			entityManager.remove(entity);
+		}
+		else {
+			entityManager.remove(entityManager.merge(entity));
+		}
 		return entity;
 	}
 
@@ -45,12 +54,12 @@ public class SimpleRepository<T, ID extends Serializable> implements Repository<
 	}
 
 	@Override
-	public Optional<T> findOne(BooleanExpression predicate) {
+	public Optional<T> findOne(Predicate predicate) {
 		return findOne(q -> q.where(predicate));
 	}
 
 	@Override
-	public Optional<T> findOne(BooleanExpression predicate, Consumer<JPQLQuery> consumer) {
+	public Optional<T> findOne(Predicate predicate, Consumer<JPQLQuery> consumer) {
 		return findOne(q -> consumer.accept(q.where(predicate)));
 	}
 
@@ -68,12 +77,12 @@ public class SimpleRepository<T, ID extends Serializable> implements Repository<
 	}
 
 	@Override
-	public List<T> findAll(BooleanExpression predicate) {
+	public List<T> findAll(Predicate predicate) {
 		return findAll(q -> q.where(predicate));
 	}
 
 	@Override
-	public List<T> findAll(BooleanExpression predicate, Consumer<JPQLQuery> consumer) {
+	public List<T> findAll(Predicate predicate, Consumer<JPQLQuery> consumer) {
 		return findAll(q -> consumer.accept(q.where(predicate)));
 	}
 

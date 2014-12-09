@@ -1,12 +1,14 @@
-package me.yanaga.winter.data.jpa.metadata;
+package me.yanaga.winter.data.jpa.spring.config.metadata;
 
 import com.google.common.collect.ImmutableList;
-import me.yanaga.winter.data.jpa.config.EnableRepositories;
+import me.yanaga.winter.data.jpa.spring.config.EnableRepositories;
 import org.springframework.core.type.AnnotationMetadata;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toList;
 
 public class EnableRepositoriesMetadata {
 
@@ -55,7 +57,7 @@ public class EnableRepositoriesMetadata {
 
 	private static List<String> getBasePackageClassesAttributes(AnnotationMetadata annotationMetadata) {
 		Class<?>[] basePackageClasses = (Class<?>[]) annotationMetadata.getAnnotationAttributes(ANNOTATION_NAME).get(BASE_PACKAGE_CLASSES);
-		return ImmutableList.copyOf(Arrays.stream(basePackageClasses).map(k -> k.getPackage().getName()).collect(Collectors.toList()));
+		return Arrays.stream(basePackageClasses).map(k -> k.getPackage().getName()).collect(collectingAndThen(toList(), ImmutableList::copyOf));
 	}
 
 	public List<String> getPackagesToScan() {
