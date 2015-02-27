@@ -1,17 +1,23 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>me.yanaga</groupId>
     <artifactId>winter-data-jpa</artifactId>
     <version>1.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>winter-data-jpa</name>
+    <organization>
+        <name>Edson Yanaga</name>
+        <url>http://www.yanaga.me</url>
+    </organization>
     <description>
         winter-data-jpa is a repository implementation inspired by spring-data-jpa.
         But unlike spring-data-jpa, it is not transactional by default,
         and has builtin support for more complex queries using lambdas
         without the need to create custom repositories.
     </description>
-    <url>http://yanaga.github.io/winter-data-jpa</url>
+    <url>https://github.com/yanaga/winter-data-jpa</url>
+    <inceptionYear>2015</inceptionYear>
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -82,11 +88,6 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>17.0</version>
-        </dependency>
-        <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <version>1.1</version>
@@ -124,10 +125,9 @@
             <version>${querydsl.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-            <version>1.3</version>
-            <scope>test</scope>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>1.7.1</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -143,6 +143,30 @@
     </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>1.8</version>
+                <configuration>
+                    <verbose>false</verbose>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>first</id>
+                        <goals>
+                            <goal>update-file-header</goal>
+                        </goals>
+                        <phase>process-sources</phase>
+                        <configuration>
+                            <licenseName>apache_v2</licenseName>
+                            <roots>
+                                <root>src/main/java</root>
+                                <root>src/test</root>
+                            </roots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>com.mysema.maven</groupId>
                 <artifactId>apt-maven-plugin</artifactId>
